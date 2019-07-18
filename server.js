@@ -5,8 +5,8 @@ const axios = require('axios')
 
 // This is the client ID and client secret that you obtained
 // while registering the application
-const clientID = ''
-const clientSecret = ''
+const clientID = 'dd87eb0d1732bf5e0f5b'
+const clientSecret = 'dbc2511afcb0be42b2242213c8eca0074498c6a4'
 
 const app = express()
 
@@ -26,26 +26,33 @@ app.get('/oauth/redirect', (req, res) => {
          accept: 'application/json'
     }
   }).then((response) => {
-    console.log(response);
+   // console.log(response);
     
     // Once we get the response, extract the access token from
     // the response body
     const accessToken = response.data.access_token
-    // redirect the user to the welcome page, along with the access token
-    //res.redirect(`/welcome.html?access_token=${accessToken}`)
     axios({
       method: 'get',
-      url: 'https://api.github.com/user',
+      url: 'https://api.github.com/user/emails',
       headers:{
         'Authorization': "bearer " + accessToken
       }
     })
     .then(response => {
-      console.log(response);
+      const data = response.data;
+
+      data.forEach((item) => {
+        if(item.primary === true){
+          // console.log(index);
+          console.log(item);
+        }
+      })
     })
   })
 })
 
 
 app.use(express.static(__dirname + '/public'))
-app.listen(8080)
+app.listen(8080, () => {
+  console.log("server is running in port 8080")
+});
