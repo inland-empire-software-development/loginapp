@@ -1,6 +1,7 @@
 const express = require('express')
 
 // Import the axios library, to make HTTP requests
+//switch to passport
 const axios = require('axios')
 
 // This is the client ID and client secret that you obtained
@@ -10,6 +11,7 @@ const clientSecret = 'dbc2511afcb0be42b2242213c8eca0074498c6a4'
 
 const app = express()
 
+app.use(express.static('public'));
 // Declare the redirect route
 app.get('/oauth/redirect', (req, res) => {
   // The req.query object has the query params that
