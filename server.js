@@ -3,16 +3,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-// Import the axios library, to make HTTP requests
-const axios = require('axios');
 
-// This is the client ID and client secret that you obtained
-// while registering the application
-const clientID = 'dd87eb0d1732bf5e0f5b';
-const clientSecret = 'dbc2511afcb0be42b2242213c8eca0074498c6a4';
-
-
-// Sets up the express app
+// Sets up the Express app
 // ========================
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -27,14 +19,17 @@ app.use(express.static(__dirname + '/public'));
 
 // Routes
 // ========================
+require('./routes/auth-github.js')(app);
 require('./routes/html-routes.js')(app);
 
 
-// Starting express app
+// Starting Express app
 // ========================
 app.listen(PORT, async () => {
   console.log('Server Ready!');
-  const mongoConnection = await mongoose.connect('mongodb://localhost/sampledb', {useCreateIndex: true, useNewUrlParser: true});
+
+  // Connect to Mongo DB 
+  const mongoConnection = await mongoose.connect('mongodb://localhost/sampledb', { useCreateIndex: true, useNewUrlParser: true });
   console.log('Database Ready!');
 
   console.log(`Server is running on port ${PORT}`);
