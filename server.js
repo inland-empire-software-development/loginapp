@@ -17,13 +17,6 @@ const clientSecret = 'dbc2511afcb0be42b2242213c8eca0074498c6a4';
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Set mongoose to leverage built in JavaScript ES6 Promises
-// Connect to the Mongo DB
-mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/week18Populater", {
-  useMongoClient: true
-});
-
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -39,6 +32,10 @@ require('./routes/html-routes.js')(app);
 
 // Starting express app
 // ========================
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+  console.log('Server Ready!');
+  const mongoConnection = await mongoose.connect('mongodb://localhost/sampledb', {useCreateIndex: true, useNewUrlParser: true});
+  console.log('Database Ready!');
+
   console.log(`Server is running on port ${PORT}`);
 });
