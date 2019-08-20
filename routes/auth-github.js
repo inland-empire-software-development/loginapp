@@ -1,5 +1,5 @@
 const path = require('path');
-const User = require('../models');
+const User = require('../models/User');
 
 // Import the axios library, to make HTTP requests
 const axios = require('axios');
@@ -10,11 +10,6 @@ const mongoose = require('mongoose');
 // while registering the application
 const clientID = keys.clientID;
 const clientSecret = keys.clientSecret;
-console.log(keys.password);
-console.log(clientID);
-
-
-
 
 
 module.exports = app => {
@@ -49,27 +44,42 @@ module.exports = app => {
                 }
             })
                 .then(response => {
+                    console.log(response);
+
                     const data = response.data;
                     console.log(data);
 
                     data.forEach((item) => {
+                        console.log(item);
+
                         if (item.primary === true) {
-                            // console.log(index);
-                            console.log(item.email);
+
+                            // This is to upload the email into the database
+                            axios({
+                                method: 'post',
+                                url: "http://localhost:8080/",
+                                data: {
+                                    name: "Bob123",
+                                    email: item.email
+                                }
+                            }).then(res => {
+                                console.log(res);
+
+                            })
                         }
                     });
 
-                    axios({
-                        method: 'post',
-                        url: `https://github.com/logout`,
-                        data: {
-                            utf8: "✓",
-                            authenticity_token: "qbMLdBOnWHRbjuU5OGCq4FPzQcATDZF3aS8VJA9EqaUrWcFqmBDyEnWev7hlI9EarE4Q4gXjl18DwyN5JSisiw==",
-                        }
-                    }).then(response => {
-                        console.log(response);
-                    })
-                        .catch(err => console.log("Tony please fix me!!!!"));
+                    // axios({
+                    //     method: 'post',
+                    //     url: `https://github.com/logout`,
+                    //     data: {
+                    //         utf8: "✓",
+                    //         authenticity_token: "qbMLdBOnWHRbjuU5OGCq4FPzQcATDZF3aS8VJA9EqaUrWcFqmBDyEnWev7hlI9EarE4Q4gXjl18DwyN5JSisiw==",
+                    //     }
+                    // }).then(response => {
+                    //     console.log(response);
+                    // })
+                    //     .catch(err => console.log("Tony please fix me!!!!"));
 
                     // axios({
                     //   method: 'delete',
@@ -88,16 +98,23 @@ module.exports = app => {
         });
     });
 
+    // The route that will actaully add the user into the database
     app.post('/', (req, res) => {
+
         const user = new User({
             name: req.body.name,
             email: req.body.email
         })
-        user.save().then(result => {
-            console.log(result);
-        })
+        user.save()
+            .then(result => {
+                console.log(result);
+            })
             .catch(err => console.log(err));
 
+        res.status(201).json({
+            message: "Handling POST request",
+            createdUser: user
+        })
     })
 
 };

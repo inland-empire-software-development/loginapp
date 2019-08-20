@@ -1,12 +1,11 @@
 // Dependencies
 // ========================
+require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
 const key = require('./keys');
 
 
-
-require('dotenv').config()
 
 
 // Sets up the Express app
@@ -30,11 +29,14 @@ require('./routes/html-routes.js')(app);
 
 // Starting Express app
 // ========================
-app.listen(PORT, async () => {
+app.listen(PORT, () => {
   console.log('Server Ready!');
 
-  // Connect to Mongo DB 
-  // mongoose.connect(`mongodb+srv://andymendez100:${key.password}@iesd-cluster-zotvx.mongodb.net/test?retryWrites=true&w=majority`)
+  // Connect to Mongo DB using compass
+  mongoose.connect(`mongodb+srv://andymendez100:${key.password}@iesd-cluster-zotvx.mongodb.net/test`, {
+    useCreateIndex: true,
+    useNewUrlParser: true
+  })
   // const mongoConnection = await mongoose.connect('mongodb://localhost/sampledb', { useCreateIndex: true, useNewUrlParser: true });
   console.log('Database Ready!');
 
