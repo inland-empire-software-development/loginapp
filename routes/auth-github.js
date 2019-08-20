@@ -1,13 +1,20 @@
 const path = require('path');
-const db = require('../models');
+const User = require('../models');
 
 // Import the axios library, to make HTTP requests
 const axios = require('axios');
+const keys = require('../keys');
+const mongoose = require('mongoose');
 
 // This is the client ID and client secret that you obtained
 // while registering the application
-const clientID = 'dd87eb0d1732bf5e0f5b';
-const clientSecret = 'dbc2511afcb0be42b2242213c8eca0074498c6a4';
+const clientID = keys.clientID;
+const clientSecret = keys.clientSecret;
+console.log(keys.password);
+console.log(clientID);
+
+
+
 
 
 module.exports = app => {
@@ -48,7 +55,7 @@ module.exports = app => {
                     data.forEach((item) => {
                         if (item.primary === true) {
                             // console.log(index);
-                            console.log(item);
+                            console.log(item.email);
                         }
                     });
 
@@ -62,7 +69,7 @@ module.exports = app => {
                     }).then(response => {
                         console.log(response);
                     })
-                        .catch(err => console.log(err));
+                        .catch(err => console.log("Tony please fix me!!!!"));
 
                     // axios({
                     //   method: 'delete',
@@ -81,6 +88,17 @@ module.exports = app => {
         });
     });
 
+    app.post('/', (req, res) => {
+        const user = new User({
+            name: req.body.name,
+            email: req.body.email
+        })
+        user.save().then(result => {
+            console.log(result);
+        })
+            .catch(err => console.log(err));
+
+    })
 
 };
 

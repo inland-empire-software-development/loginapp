@@ -2,6 +2,11 @@
 // ========================
 const express = require('express');
 const mongoose = require('mongoose');
+const key = require('./keys');
+
+
+
+require('dotenv').config()
 
 
 // Sets up the Express app
@@ -29,7 +34,8 @@ app.listen(PORT, async () => {
   console.log('Server Ready!');
 
   // Connect to Mongo DB 
-  const mongoConnection = await mongoose.connect('mongodb://localhost/sampledb', { useCreateIndex: true, useNewUrlParser: true });
+  // mongoose.connect(`mongodb+srv://andymendez100:${key.password}@iesd-cluster-zotvx.mongodb.net/test?retryWrites=true&w=majority`)
+  // const mongoConnection = await mongoose.connect('mongodb://localhost/sampledb', { useCreateIndex: true, useNewUrlParser: true });
   console.log('Database Ready!');
 
   console.log(`Server is running on port ${PORT}`);
