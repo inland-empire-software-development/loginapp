@@ -24,7 +24,10 @@ const createUserDb = (username, email) => {
     .catch(err => console.log(err));
 }
 
-const createEventDb = ()
+//Add Event date each user that signs in 
+const createEventDb = () => {
+    
+}
 
 module.exports = app => {
 
@@ -90,6 +93,8 @@ module.exports = app => {
                             })
                             .then(resp => {
                                 createUserDb(resp.data.login, item.email);
+                                console.log(resp.data);
+                                
                             })
                         }
                     });
