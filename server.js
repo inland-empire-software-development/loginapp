@@ -56,3 +56,15 @@ app.get('/auth/github/callback',
 app.listen(8080, () => {
   console.log("Server is running in port 8080")
 });
+
+// Users collection
+{
+  fullName: "Tony Nguyen",
+  email: "tony@gmail.com",
+}
+
+// Events collection
+{
+  created_at: "8-13-2019",
+  attendees: ["tony@gmail.com", "andy@gmail.com"]
+}
