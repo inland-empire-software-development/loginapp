@@ -33,7 +33,7 @@ app.listen(PORT, () => {
   console.log('Server Ready!');
 
   // Connect to Mongo DB using compass
-  mongoose.connect(`mongodb+srv://andymendez100:${key.password}@iesd-cluster-zotvx.mongodb.net/test`, {
+  mongoose.connect(`mongodb+srv://andymendez100:${key.password}@iesd-login-zotvx.mongodb.net/test`, {
     useCreateIndex: true,
     useNewUrlParser: true
   })

@@ -1,5 +1,6 @@
 const path = require('path');
 const User = require('../models/User');
+const Event = require('../models/Event');
 
 // Import the axios library, to make HTTP requests
 const axios = require('axios');
@@ -11,6 +12,19 @@ const mongoose = require('mongoose');
 const clientID = keys.clientID;
 const clientSecret = keys.clientSecret;
 
+const createUserDb = (username, email) => {
+    const user = new User({
+        username,
+        email
+    })
+    user.save()
+    .then(result => {
+        console.log(result);
+    })
+    .catch(err => console.log(err));
+}
+
+const createEventDb = ()
 
 module.exports = app => {
 
@@ -55,19 +69,32 @@ module.exports = app => {
                         if (item.primary === true) {
 
                             // This is to upload the email into the database
-                            axios({
-                                method: 'post',
-                                url: "http://localhost:8080/",
-                                data: {
-                                    name: "Bob123",
-                                    email: item.email
-                                }
-                            }).then(res => {
-                                console.log(res);
+                            // axios({
+                            //     method: 'post',
+                            //     url: "http://localhost:8080/",
+                            //     data: {
+                            //         username: "Bob123",
+                            //         email: item.email
+                            //     }
+                            // }).then(res => {
+                            //     console.log(res);
 
+                            // })
+                            console.log('accessTOKEN', accessToken);
+                            axios({
+                                method: 'get',
+                                url: "https://api.github.com/user",
+                                headers: {
+                                    'Authorization': "bearer " + accessToken
+                                }
+                            })
+                            .then(resp => {
+                                createUserDb(resp.data.login, item.email);
                             })
                         }
                     });
+
+                    console.log(accessToken);
 
                     // axios({
                     //     method: 'post',
@@ -85,7 +112,7 @@ module.exports = app => {
                     //   method: 'delete',
                     //   url: `https://api.github.com/applications/${clientID}/grants/${accessToken}`,
                     //   auth: {
-                    //     username: clientID,
+                    //     userusername: clientID,
                     //     password: clientSecret
                     //   }
                     // }).then(responseTwo => {
@@ -102,19 +129,23 @@ module.exports = app => {
     app.post('/', (req, res) => {
 
         const user = new User({
-            name: req.body.name,
+            username: req.body.username,
             email: req.body.email
         })
         user.save()
-            .then(result => {
-                console.log(result);
-            })
-            .catch(err => console.log(err));
-
-        res.status(201).json({
-            message: "Handling POST request",
-            createdUser: user
+        .then(result => {
+            console.log(result);
         })
+        .catch(err => console.log(err));
+
+        // res.status(201).json({
+        //     message: "Handling POST request",
+        //     createdUser: user
+        // })
+    })
+
+    app.post('/test', (req, res) => {
+
     })
 
 };
