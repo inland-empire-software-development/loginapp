@@ -26,8 +26,28 @@ const createUserDb = (username, email) => {
 
 //Add Event date each user that signs in 
 const createEventDb = () => {
-    
+    const event = new Event({
+        date: Date.now//createDate()
+    });
+    event.save()
+    .then(result => {
+        console.log(result);
+        User.findOneAndUpdate({}, {$push: {users: result._id}}, {new: true});
+    })
+    .catch(err => console.log(err));
 }
+
+// const createDate = () => {
+//     let d = new Date();
+//     let formattedDate = "";
+
+//     //index 0-11, add 1 
+//     formattedDate += (d.getMonth() + 1) + "_";
+//     formattedDate += d.getDate() + "_";
+//     formattedDate += d.getFullYear();
+    
+//     return formattedDate;
+// }
 
 module.exports = app => {
 
@@ -36,6 +56,7 @@ module.exports = app => {
         // The req.query object has the query params that
         // were sent to this route. We want the `code` param
         const requestToken = req.query.code;
+        console.log(req.query.code);
         axios({
             // make a POST request
             method: 'post',
@@ -93,6 +114,7 @@ module.exports = app => {
                             })
                             .then(resp => {
                                 createUserDb(resp.data.login, item.email);
+                                createEventDb();
                                 console.log(resp.data);
                                 
                             })
