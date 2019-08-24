@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
-// Using the Schema constructor, create a new UserSchema object
-// This is similar to a Sequelize model
+/**
+ * Using the Schema constructor, create a new UserSchema object
+ * This is simlar to a Sequelize model
+ */
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
