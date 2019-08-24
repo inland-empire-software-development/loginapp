@@ -2,13 +2,14 @@ const path = require('path');
 const User = require('../models/User');
 const Event = require('../models/Event');
 
-// Import the axios library, to make HTTP requests
 const axios = require('axios');
 const keys = require('../keys');
 const mongoose = require('mongoose');
 
-// This is the client ID and client secret that you obtained
-// while registering the application
+/**
+ * This is the client ID and client secret provided by GitHub
+ * when you register for an OAuth app.
+ */
 const clientID = keys.clientID;
 const clientSecret = keys.clientSecret;
 
@@ -51,29 +52,31 @@ const createEventDb = () => {
 
 module.exports = app => {
 
-    // Declare the redirect route
+    /**
+     * Route that GitHub redirects the user to
+     * once they give access to the application.
+     */
     app.get('/oauth/redirect', (req, res) => {
-        // The req.query object has the query params that
-        // were sent to this route. We want the `code` param
         const requestToken = req.query.code;
-        console.log(req.query.code);
+
+        /**
+         * Post request to GitHub OAuth api with the client ID, 
+         * client secret and request token. Request token is given
+         * after user allows application access to their info.
+         */
         axios({
-            // make a POST request
             method: 'post',
-            // to the Github authentication API, with the client ID, client secret
-            // and request token
             url: `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${clientSecret}&code=${requestToken}`,
-            // Set the content type header, so that we get the response in JSOn
             headers: {
                 accept: 'application/json'
             }
         }).then((response) => {
-            // console.log(response);
 
-            // Once we get the response, extract the access token from
-            // the response body
+            /** 
+             * Once we get the response, extract the access token from
+             * the response body
+             */
             const accessToken = response.data.access_token;
-            console.log(accessToken);
             axios({
                 method: 'get',
                 url: 'https://api.github.com/user/emails',
@@ -81,74 +84,32 @@ module.exports = app => {
                     'Authorization': "bearer " + accessToken
                 }
             })
-                .then(response => {
-                    console.log(response);
+            .then(response => {
+                const data = response.data;
 
-                    const data = response.data;
-                    console.log(data);
-
-                    data.forEach((item) => {
-                        console.log(item);
-
-                        if (item.primary === true) {
-
-                            // This is to upload the email into the database
-                            // axios({
-                            //     method: 'post',
-                            //     url: "http://localhost:8080/",
-                            //     data: {
-                            //         username: "Bob123",
-                            //         email: item.email
-                            //     }
-                            // }).then(res => {
-                            //     console.log(res);
-
-                            // })
-                            console.log('accessTOKEN', accessToken);
-                            axios({
-                                method: 'get',
-                                url: "https://api.github.com/user",
-                                headers: {
-                                    'Authorization': "bearer " + accessToken
-                                }
-                            })
-                            .then(resp => {
-                                createUserDb(resp.data.login, item.email);
-                                createEventDb();
-                                console.log(resp.data);
-                                
-                            })
-                        }
-                    });
-
-                    console.log(accessToken);
-
-                    // axios({
-                    //     method: 'post',
-                    //     url: `https://github.com/logout`,
-                    //     data: {
-                    //         utf8: "✓",
-                    //         authenticity_token: "qbMLdBOnWHRbjuU5OGCq4FPzQcATDZF3aS8VJA9EqaUrWcFqmBDyEnWev7hlI9EarE4Q4gXjl18DwyN5JSisiw==",
-                    //     }
-                    // }).then(response => {
-                    //     console.log(response);
-                    // })
-                    //     .catch(err => console.log("Tony please fix me!!!!"));
-
-                    // axios({
-                    //   method: 'delete',
-                    //   url: `https://api.github.com/applications/${clientID}/grants/${accessToken}`,
-                    //   auth: {
-                    //     userusername: clientID,
-                    //     password: clientSecret
-                    //   }
-                    // }).then(responseTwo => {
-                    //   // console.log('test:', responseTwo);
-                    // })
-                    // .catch(err => {
-                    //   console.log('err', err);
-                    // })
+                /**
+                 * Loop through response and checks to see if 
+                 * the data provided is the primary information of 
+                 * the user.
+                 */
+                data.forEach((item) => {
+                    if (item.primary === true) {
+                        axios({
+                            method: 'get',
+                            url: "https://api.github.com/user",
+                            headers: {
+                                'Authorization': "bearer " + accessToken
+                            }
+                        })
+                        .then(resp => {
+                            createUserDb(resp.data.login, item.email);
+                            createEventDb();
+                            console.log(resp.data);
+                            
+                        })
+                    }
                 });
+            });
         });
     });
 
@@ -164,11 +125,6 @@ module.exports = app => {
             console.log(result);
         })
         .catch(err => console.log(err));
-
-        // res.status(201).json({
-        //     message: "Handling POST request",
-        //     createdUser: user
-        // })
     })
 
     app.post('/test', (req, res) => {
