@@ -1,10 +1,9 @@
 const path = require('path');
-const User = require('../models/User');
-const Event = require('../models/Event');
-
 const axios = require('axios');
 const keys = require('../keys');
 const mongoose = require('mongoose');
+const User = require('../models/User');
+const Event = require('../models/Event');
 
 /**
  * This is the client ID and client secret provided by GitHub
@@ -112,24 +111,4 @@ module.exports = app => {
             });
         });
     });
-
-    // The route that will actaully add the user into the database
-    app.post('/', (req, res) => {
-
-        const user = new User({
-            username: req.body.username,
-            email: req.body.email
-        })
-        user.save()
-        .then(result => {
-            console.log(result);
-        })
-        .catch(err => console.log(err));
-    })
-
-    app.post('/test', (req, res) => {
-
-    })
-
 };
-
