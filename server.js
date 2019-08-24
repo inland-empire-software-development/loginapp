@@ -3,12 +3,14 @@
 require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
-const key = require('./keys');
+const key = require('./config/keys');
 
 // Sets up the Express app
 // ========================
 const app = express();
 const PORT = process.env.PORT || 8080;
+const env = process.env.NODE_ENV || 'development';
+const mongoURI = key.mongoURI;
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -27,7 +29,7 @@ require('./routes/html-routes.js')(app);
 // ========================
 app.listen(PORT, () => {
   // Connect to Atlas Mongo DB
-  mongoose.connect(`mongodb+srv://andymendez100:${key.password}@iesd-login-zotvx.mongodb.net/test`, {
+  mongoose.connect(mongoURI, {
     useCreateIndex: true,
     useNewUrlParser: true
   }, err => {
@@ -36,8 +38,7 @@ app.listen(PORT, () => {
   .then(() => {
     console.log('Database Ready!');
   });
-  // const mongoConnection = await mongoose.connect('mongodb://localhost/sampledb', { useCreateIndex: true, useNewUrlParser: true });
-
+  
   console.log('Server Ready!');
   console.log(`Server is running on port ${PORT}`);
 });

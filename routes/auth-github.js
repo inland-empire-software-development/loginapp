@@ -1,6 +1,6 @@
 const path = require('path');
 const axios = require('axios');
-const keys = require('../keys');
+const keys = require('../config/keys');
 const mongoose = require('mongoose');
 const User = require('../models/User');
 const Event = require('../models/Event');
@@ -104,7 +104,6 @@ module.exports = app => {
                             createUserDb(resp.data.login, item.email);
                             createEventDb();
                             console.log(resp.data);
-                            
                         })
                     }
                 });
