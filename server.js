@@ -9,7 +9,6 @@ const key = require('./config/keys');
 // ========================
 const app = express();
 const PORT = process.env.PORT || 8080;
-const env = process.env.NODE_ENV || 'development';
 const mongoURI = key.mongoURI;
 
 // Sets up the Express app to handle data parsing
@@ -28,7 +27,6 @@ require('./routes/html-routes.js')(app);
 // Starting Express app
 // ========================
 app.listen(PORT, () => {
-  // Connect to Atlas Mongo DB
   mongoose.connect(mongoURI, {
     useCreateIndex: true,
     useNewUrlParser: true
@@ -38,7 +36,7 @@ app.listen(PORT, () => {
   .then(() => {
     console.log('Database Ready!');
   });
-  
+
   console.log('Server Ready!');
   console.log(`Server is running on port ${PORT}`);
 });
