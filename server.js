@@ -3,15 +3,13 @@
 require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
-const key = require('./keys');
-
-
-
+const key = require('./config/keys');
 
 // Sets up the Express app
 // ========================
 const app = express();
 const PORT = process.env.PORT || 8080;
+const mongoURI = key.mongoURI;
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -26,19 +24,19 @@ app.use(express.static(__dirname + '/public'));
 require('./routes/auth-github.js')(app);
 require('./routes/html-routes.js')(app);
 
-
 // Starting Express app
 // ========================
 app.listen(PORT, () => {
-  console.log('Server Ready!');
-
-  // Connect to Mongo DB using compass
-  mongoose.connect(`mongodb+srv://andymendez100:${key.password}@iesd-login-zotvx.mongodb.net/test`, {
+  mongoose.connect(mongoURI, {
     useCreateIndex: true,
     useNewUrlParser: true
+  }, err => {
+    if(err) console.log(err);
   })
-  // const mongoConnection = await mongoose.connect('mongodb://localhost/sampledb', { useCreateIndex: true, useNewUrlParser: true });
-  console.log('Database Ready!');
+  .then(() => {
+    console.log('Database Ready!');
+  });
 
+  console.log('Server Ready!');
   console.log(`Server is running on port ${PORT}`);
 });
