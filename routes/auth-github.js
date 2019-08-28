@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const User = require('../models/User');
 const Event = require('../models/Event');
 
+// console.log(new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate()));
+
 /**
  * This is the client ID and client secret provided by GitHub
  * when you register for an OAuth app.
@@ -26,13 +28,14 @@ const createUserDb = (username, email) => {
 
 //Add Event date each user that signs in 
 const createEventDb = () => {
+    const eventDate= new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate())
     const event = new Event({
-        date: Date.now//createDate()
+        date: eventDate
     });
     event.save()
     .then(result => {
-        console.log(result);
-        User.findOneAndUpdate({}, {$push: {users: result._id}}, {new: true});
+        console.log(result._id);
+        Event.findOneAndUpdate({date: eventDate}, {$push: {users: result._id}}, {new: true});
     })
     .catch(err => console.log(err));
 }
@@ -110,4 +113,15 @@ module.exports = app => {
             });
         });
     });
+
+    app.get('/test', (req, res) => {
+        Event.find({})
+        .populate('users')
+        .then(dbUser => {
+            res.json(dbUser);
+        })
+        .catch(err => {
+            res.json(err);
+        })
+    })
 };
