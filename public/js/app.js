@@ -7,6 +7,9 @@ const slide4 = document.querySelector("#slide4");
 const slide5 = document.querySelector("#slide5");
 
 const tl = new TimelineMax();
+// let d = new Date();
+// let n = d.getDate();
+
 
 //------------------------
 //   top-down animation
@@ -20,6 +23,29 @@ tl.fromTo(front, 1, { height: "0%" }, { height: "65%", ease: Power2.easeInOut })
     .fromTo(slide3, 1.2, { y: "-100%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
     .fromTo(slide4, 1.2, { y: "100%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
     .fromTo(slide5, 1.2, { y: "-100%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
+
+
+// Js for checking if today's code is correct
+let code;
+
+
+$.get("/codeToday", function (data) {
+    console.log(data);
+    code = data;
+
+})
+
+
+$(".checkIn").on('submit', (event) => {
+    event.preventDefault();
+    var userCode = document.getElementById("myForm").elements[0].value;
+    userCode = parseInt(userCode)
+    if (code === userCode) {
+        window.location = "https://github.com/login/oauth/authorize?client_id=dd87eb0d1732bf5e0f5b&scope=user&redirect_uri=http://localhost:8080/oauth/redirect";
+    }
+})
+
+
 
 
 // //------------------------
@@ -67,3 +93,4 @@ tl.fromTo(front, 1, { height: "0%" }, { height: "65%", ease: Power2.easeInOut })
 //     .fromTo(slide3, 1.2, { y: "-100%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
 //     .fromTo(slide4, 1.2, { x: "205%" }, { x: "0%", ease: Power2.easeInOut }, "-=1.2")
 //     .fromTo(slide5, 1.2, { x: "105%" }, { x: "0%", ease: Power2.easeInOut }, "-=1.2")
+
