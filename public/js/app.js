@@ -27,7 +27,7 @@ tl.fromTo(front, 1, { height: "0%" }, { height: "65%", ease: Power2.easeInOut })
 // Js for checking if today's code is correct
 
 $(".checkIn").on('submit', (event) => {
-   
+
     event.preventDefault();
     var userCode = document.getElementById("myForm").elements[0].value;
     userCode = parseInt(userCode)
