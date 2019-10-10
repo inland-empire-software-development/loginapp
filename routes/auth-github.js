@@ -14,18 +14,19 @@ const Event = require('../models/Event');
 const clientID = keys.clientID;
 const clientSecret = keys.clientSecret;
 const eventDate = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())
+let code = Math.floor(100000 + Math.random() * 900000)
 
-const createUserDb = (username, email) => {
-    const user = new User({
-        username,
-        email
-    })
-    user.save()
-        .then(result => {
-            console.log(result);
-        })
-        .catch(err => console.log(err));
-}
+// const createUserDb = (username, email) => {
+//     const user = new User({
+//         username,
+//         email
+//     })
+//     user.save()
+//         .then(result => {
+//             console.log(result);
+//         })
+//         .catch(err => console.log(err));
+// }
 
 //Add Event date each user that signs in 
 // const createEventDb = () => {
@@ -138,5 +139,19 @@ module.exports = app => {
                 res.json(err);
             });
     });
+    app.get("/codeToday", function (req, res) {
+        var lastUpdateTime = new Date().getTime();
 
+
+        var currentTime = new Date().getTime();
+        if (currentTime - lastUpdateTime >= 24 * 60 * 60 * 1000) // number of milliseconds in a day
+        {
+            // update cycleDay
+            lastUpdateTime = currentTime;
+            // ...
+            code = Math.floor(100000 + Math.random() * 900000)
+        }
+
+        res.json(code)
+    })
 };

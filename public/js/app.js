@@ -7,7 +7,8 @@ const slide4 = document.querySelector("#slide4");
 const slide5 = document.querySelector("#slide5");
 
 const tl = new TimelineMax();
-var code = 123;
+// let d = new Date();
+// let n = d.getDate();
 
 
 //------------------------
@@ -25,9 +26,17 @@ tl.fromTo(front, 1, { height: "0%" }, { height: "65%", ease: Power2.easeInOut })
 
 
 // Js for checking if today's code is correct
+let code;
+
+
+$.get("/codeToday", function (data) {
+    console.log(data);
+    code = data;
+
+})
+
 
 $(".checkIn").on('submit', (event) => {
-
     event.preventDefault();
     var userCode = document.getElementById("myForm").elements[0].value;
     userCode = parseInt(userCode)
