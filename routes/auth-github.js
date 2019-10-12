@@ -117,7 +117,7 @@ module.exports = app => {
                                     // createUserDb(resp.data.login, item.email);
                                     // createEventDb();
                                     // console.log(resp.data);
-                                    res.redirect('/')
+                                    res.redirect('/signedin')
                                 })
                         }
                     });
