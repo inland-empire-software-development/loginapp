@@ -18,11 +18,11 @@ tl.fromTo(front, 1, { height: "0%" }, { height: "65%", ease: Power2.easeInOut })
     .fromTo(front, 1.2, { width: "50%" }, { width: "26%", ease: Power2.easeInOut })
     // .fromTo(logo, .5, {height: "0%"}, {height: "50%", ease: Power2.easeInOut})
     // .fromTo(logo, .7, { width: "0%" }, { width: "100%", ease: Power2.easeInOut })
-    .fromTo(slide1, 1.2, { y: "-100%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
-    .fromTo(slide2, 1.2, { y: "100%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
-    .fromTo(slide3, 1.2, { y: "-100%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
-    .fromTo(slide4, 1.2, { y: "100%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
-    .fromTo(slide5, 1.2, { y: "-100%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
+    .fromTo(slide1, 1.2, { y: "-105%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
+    .fromTo(slide2, 1.2, { y: "105%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
+    .fromTo(slide3, 1.2, { y: "-105%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
+    .fromTo(slide4, 1.2, { y: "105%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
+    .fromTo(slide5, 1.2, { y: "-105%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
 
 
 // Js for checking if today's code is correct

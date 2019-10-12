@@ -5,31 +5,34 @@
   font-family: sans-serif;
 }
 
-.bg {
-  margin: 2%;
-  width: 96%;
-  height: 100%;
-  z-index: -1;
+table{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
 }
-#slide1,
-#slide2,
-#slide3,
-#slide4,
-#slide5 {
-  margin: 2%;
-  width: 5%;
+
+.bg {
+  height: 95vh;
+  width: 18.5vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .slider {
   overflow: hidden;
   position: absolute;
+  padding: 0px 25px;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-position: center;
-  background-size: cover;
   z-index: -1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .container {
   display: flex;
@@ -41,20 +44,30 @@
   height: 100%;
   width: 100%;
 }
-img .logo-img {
-  position: absolute;
-  height: 100vh;
-  width: 100%;
-  object-fit: scale-down;
+.imageRow{
+  text-align: center;
+}
+.logo-img{
+  display: flex;
   justify-content: center;
 }
+.logo-img img {
+  width: 50%;
+  max-width: 305px;
+  height: auto;
+}
+
 .front {
-  margin: 0;
-  padding: 0;
   background-color: white;
-  height: 20%;
-  width: 76%;
+  min-height: 550px;
+  max-height: 550px;
+  min-width: 475px;
+  max-width: 475px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
 }
 .codeInput {
   /* background-color: rgb(29, 28, 28); */
@@ -73,11 +86,13 @@ img .logo-img {
 .textRow {
   color: black;
   left: 0;
-  top: 50%;
   width: 100%;
   text-align: center;
-  font-size: 1.5rem;
-  margin: 5% 0;
+  font-size: 1.25rem;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25px;
 }
 .codeRow {
   color: black;
@@ -88,13 +103,16 @@ img .logo-img {
   font-size: 1.5rem;
   margin-top: 30%;
 }
+.imageRow{
+  width: 100%;
+}
 .logo-img {
-  display: block;
+  display: flex;
+  justify-content: center;
   margin-top: auto;
-  margin-left: auto;
-  margin-right: auto;
-  width: 70%;
-  height: 16%;
+  margin-bottom: 15px;
+  width: 100%;
+  height: auto;
 }
 .codeText {
   color: black;
@@ -102,9 +120,7 @@ img .logo-img {
   text-align: center;
   font-size: 1.5rem;
 }
-.imageRow {
-  margin: 10%;
-}
+
 .codeSubmit {
   background-color: rgb(29, 28, 28);
   border: none;
@@ -115,6 +131,17 @@ img .logo-img {
   display: flex;
   justify-content: center;
 }
+
+.feedback-title{
+  margin-top: 50px;
+}
+.feedback-text{
+  margin-top: 25px;
+  font-size: 18px;
+  word-break: break-word;
+  width: 250px;
+}
+
 /* .front::after {
     content: "";
     background: black;
