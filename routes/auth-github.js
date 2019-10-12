@@ -127,7 +127,7 @@ module.exports = app => {
                                         });
 
                                     })
-                                    // createUserDb(resp.data.login, item.email);
+                                    // createUserDb(resp.data.logn, item.email);
                                     // createEventDb();
                                     // console.log(resp.data);
                                     res.redirect('/signedin')
