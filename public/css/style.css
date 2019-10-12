@@ -46,6 +46,8 @@ table{
   width: 100%;
 }
 .imageRow{
+  display: flex;
+  justify-content: center;
   text-align: center;
 }
 .logo-img{
@@ -87,6 +89,7 @@ table{
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: auto;
 }
 .textRow {
   color: black;
@@ -104,9 +107,10 @@ table{
   left: 0;
   top: 50%;
   width: 100%;
-  text-align: center;
   font-size: 1.5rem;
-  margin-top: 30%;
+  margin-top: 15%;
+  display: flex;
+  justify-content: center;
 }
 .imageRow{
   width: 100%;
@@ -130,7 +134,7 @@ table{
   background-color: rgb(29, 28, 28);
   border: none;
   color: whitesmoke;
-  margin-top: 10px;
+  margin-top: 15px;
   width: 60%;
   height: 6vh;
   display: flex;
@@ -145,13 +149,39 @@ table{
 }
 
 .feedback-title{
-  margin-top: 50px;
+  margin-top: 25px;
+  font-size: 26px;
 }
 .feedback-text{
   margin-top: 25px;
   font-size: 18px;
   word-break: break-word;
   width: 250px;
+}
+
+.errorPopup{
+  position: absolute;
+  right: -95;
+  background: url("../images/popup/popup.png");
+  background-repeat: no-repeat;
+  height: 50px;
+  width: 235px;
+  color: white;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding-left: 15px;
+  top: 335px;
+}
+.errorPopup p {
+  margin: 0;
+}
+
+#loader{
+  display: none;
+  margin-top: 75px;
+  height: 4rem;
+  width: 4rem;
 }
 
 /* .front::after {

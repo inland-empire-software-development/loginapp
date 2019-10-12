@@ -101,20 +101,33 @@ module.exports = app => {
                                 }
                             })
                                 .then(resp => {
-                                    User.create({
-                                        username: resp.data.login,
-                                        email: item.email
-                                    }).then(function (dbUser) {
-                                        console.log(dbUser.email);
+                                    User.findOne({
+                                        username: resp.data.login
+                                    }).then((data) => {
+                                        // if (data) return Event.findOneAndUpdate({ date: eventDate }, { $push: { users: data._id } }, { new: true });
+                                        if(data){
+                                            Event.findOne({ date: eventDate, users: data._id })
+                                            .then(user => {
+                                                if(!user) return Event.findOneAndUpdate({ date: eventDate }, { $push: { users: data._id } }, { new: true });
+                                            })
+                                        }
 
-                                        return Event.findOneAndUpdate({}, { $push: { users: dbUser._id } }, { new: true })
-                                    }).then(function (res) {
-                                        console.log(res);
+                                        return User.create({
+                                            username: resp.data.login,
+                                            email: item.email
+                                        }).then(function (dbUser) {
+                                            console.log(dbUser.email);
 
-                                    }).catch(function (err) {
-                                        console.log(err.message);
-                                    });
-                                    // createUserDb(resp.data.login, item.email);
+                                            return Event.findOneAndUpdate({ date: eventDate }, { $push: { users: dbUser._id } }, { new: true })
+                                        }).then(function (res) {
+                                            console.log(res);
+
+                                        }).catch(function (err) {
+                                            console.log(err.message);
+                                        });
+
+                                    })
+                                    // createUserDb(resp.data.logn, item.email);
                                     // createEventDb();
                                     // console.log(resp.data);
                                     res.redirect('/signedin')
