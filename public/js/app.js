@@ -32,14 +32,13 @@ let code;
 $.get("/codeToday", function (data) {
     console.log(data);
     code = data;
-
 })
 
 
 $(".checkIn").on('submit', (event) => {
     event.preventDefault();
     var userCode = document.getElementById("myForm").elements[0].value;
-    userCode = parseInt(userCode)
+    userCode = parseInt(userCode);
     if (code === userCode) {
         window.location = "https://github.com/login/oauth/authorize?client_id=dd87eb0d1732bf5e0f5b&scope=user&redirect_uri=http://localhost:8080/oauth/redirect";
     }
