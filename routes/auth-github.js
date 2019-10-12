@@ -104,7 +104,13 @@ module.exports = app => {
                                     User.findOne({
                                         username: resp.data.login
                                     }).then((data) => {
-                                        if (data) return Event.findOneAndUpdate({ date: eventDate }, { $push: { users: data._id } }, { new: true });
+                                        // if (data) return Event.findOneAndUpdate({ date: eventDate }, { $push: { users: data._id } }, { new: true });
+                                        if(data){
+                                            Event.findOne({ date: eventDate, users: data._id })
+                                            .then(user => {
+                                                if(!user) return Event.findOneAndUpdate({ date: eventDate }, { $push: { users: data._id } }, { new: true });
+                                            })
+                                        }
 
                                         return User.create({
                                             username: resp.data.login,

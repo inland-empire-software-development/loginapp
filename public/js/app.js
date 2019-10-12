@@ -34,16 +34,22 @@ $.get("/codeToday", function (data) {
     code = data;
 })
 
+const errorPopup = document.getElementById("errorPopup");
+const loader = document.getElementById("loader");
+const codeSubmit = document.getElementById("codeSubmit");
 
 $(".checkIn").on('submit', (event) => {
     event.preventDefault();
     var userCode = document.getElementById("myForm").elements[0].value;
     userCode = parseInt(userCode);
     if (code === userCode) {
+        errorPopup.style.display = "none";
+        loader.style.display = "block";
+        codeSubmit.style.display= "none";
         window.location = "https://github.com/login/oauth/authorize?client_id=dd87eb0d1732bf5e0f5b&scope=user&redirect_uri=http://localhost:8080/oauth/redirect";
     }
     else {
-        alert("Wow you're stupid")
+        errorPopup.style.display = "flex";
     }
 })
 
