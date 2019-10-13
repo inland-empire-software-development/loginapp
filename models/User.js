@@ -5,14 +5,14 @@ const Schema = mongoose.Schema;
  * This is simlar to a Sequelize model
  */
 const userSchema = new Schema({
-    username: {
+    Name: {
         type: String,
         unique: true,
     },
-    email: {
-        type: String,
-        unique: true,
-    }
+    // email: {
+    //     type: String,
+    //     unique: true,
+    // }
 
 });
 
