@@ -224,6 +224,7 @@ input[type='submit'] {
   cursor: pointer;
   background-color: #fff;
   border-bottom: 1px solid #d4d4d4;
+  overflow-y: auto;
 }
 .autocomplete-items div:hover {
   /*when hovering an item:*/
@@ -234,98 +235,3 @@ input[type='submit'] {
   background-color: DodgerBlue !important;
   color: #ffffff;
 }
-
-/* .front::after {
-    content: "";
-    background: black;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0.2;
-} */
-/*
-@media (min-width: 768px) {
-    .col-sm-5ths {
-        width: 20%;
-        float: left;
-    }
-}
-
-@media (min-width: 992px) {
-    .col-md-5ths {
-        width: 20%;
-        float: left;
-    }
-}
-
-@media (min-width: 1200px) {
-    .col-lg-5ths {
-        width: 20%;
-        float: left;
-    }
-}
-
-  ##Device = Desktops
-  ##Screen = 1281px to higher resolution desktops
-
-@media (min-width: 1281px) {
-  
-    //CSS
-    
-  }
-  
-  /* 
-    ##Device = Laptops, Desktops
-    ##Screen = B/w 1025px to 1280px
-  
-  @media (min-width: 1025px) and (max-width: 1280px) {
-    
-    //CSS
-    
-  }
-  
-  /* 
-    ##Device = Tablets, Ipads (portrait)
-    ##Screen = B/w 768px to 1024px
-
-  
-  @media (min-width: 768px) and (max-width: 1024px) {
-    
-    //CSS
-    
-  }
-  
-  /* 
-    ##Device = Tablets, Ipads (landscape)
-    ##Screen = B/w 768px to 1024px
-
-  
-  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-    
-    //CSS
-    
-  }
-  
-  /* 
-    ##Device = Low Resolution Tablets, Mobiles (Landscape)
-    ##Screen = B/w 481px to 767px
-
-  
-  @media (min-width: 481px) and (max-width: 767px) {
-    
-    //CSS
-    
-  }
-  
-  /* 
-    ##Device = Most of the Smartphones Mobiles (Portrait)
-    ##Screen = B/w 320px to 479px
-
-  
-  @media (min-width: 320px) and (max-width: 480px) {
-    
-    //CSS
-    
-  }*/
