@@ -5,7 +5,7 @@
   font-family: sans-serif;
 }
 
-table{
+table {
   position: absolute;
   top: 0;
   left: 0;
@@ -45,12 +45,12 @@ table{
   height: 100%;
   width: 100%;
 }
-.imageRow{
+.imageRow {
   display: flex;
   justify-content: center;
   text-align: center;
 }
-.logo-img{
+.logo-img {
   display: flex;
   justify-content: center;
 }
@@ -85,7 +85,7 @@ table{
   justify-content: center;
   top: 60%;
 }
-.checkIn{
+.checkIn {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,7 +96,7 @@ table{
   left: 0;
   width: 100%;
   text-align: center;
-  font-size: 1.25rem;  
+  font-size: 1.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -112,7 +112,7 @@ table{
   display: flex;
   justify-content: center;
 }
-.imageRow{
+.imageRow {
   width: 100%;
 }
 .logo-img {
@@ -142,27 +142,27 @@ table{
   cursor: pointer;
   transition: 500ms;
 }
-.codeSubmit:hover{
+.codeSubmit:hover {
   background-color: whitesmoke;
   color: rgb(29, 28, 28);
   border: solid 3px rgb(29, 28, 28);
 }
 
-.feedback-title{
+.feedback-title {
   margin-top: 25px;
   font-size: 26px;
 }
-.feedback-text{
+.feedback-text {
   margin-top: 25px;
   font-size: 18px;
   word-break: break-word;
   width: 250px;
 }
 
-.errorPopup{
+.errorPopup {
   position: absolute;
   right: -95;
-  background: url("../images/popup/popup.png");
+  background: url('../images/popup/popup.png');
   background-repeat: no-repeat;
   height: 50px;
   width: 235px;
@@ -177,11 +177,62 @@ table{
   margin: 0;
 }
 
-#loader{
+#loader {
   display: none;
   margin-top: 75px;
   height: 4rem;
   width: 4rem;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font: 16px Arial;
+}
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+}
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+input[type='text'] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+input[type='submit'] {
+  background-color: DodgerBlue;
+  color: #fff;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #e9e9e9;
+}
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
 }
 
 /* .front::after {
