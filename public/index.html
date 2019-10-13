@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
     <title>IE-SD Sign-In</title>
 </head>
@@ -26,20 +26,27 @@
             </div>
 
             <div class="spinner-border text-success" id="loader"></div>
-                  
+            <!--                   
             <div class="row" id="codeSubmit">
                 <div class="row codeRow ">
                     <p>Enter Code Here</p>
                 </div>
                 <div class="errorPopup" id="errorPopup">
                     <p>INCORRECT CODE!</p>
+                </div> -->
+            <!--Make sure the form has the autocomplete function switched off:-->
+            <form autocomplete="off" action="/login" method="POST">
+                <div class="autocomplete" style="width:300px;">
+                    <input id="myInput" type="text" name="myMeetUp" placeholder="Meetup name">
                 </div>
-                <form action="" class="checkIn" id="myForm">
-                    <input type="text" name="entryCode" class="codeInput">
-                    <button type="submit" class="codeSubmit"> Submit Code</button>
-                </form>
-            </div>
+                <button type="submit" class="codeSubmit"> Submit Code</button>
+            </form>
+            <form action="" class="checkIn" id="myForm">
+                <!-- <input type="text" name="entryCode" class="codeInput"> -->
+
+            </form>
         </div>
+    </div>
     </div>
     <table>
         <tr class="slider">
@@ -47,13 +54,15 @@
                 <div class="bg" style="background-image: url(./images/background/gray-col-1.png)" alt="first pic"></div>
             </td>
             <td id="slide2">
-                <div class="bg" style="background-image: url(./images/background/gray-col-2.png)" alt="second pic"></div>
+                <div class="bg" style="background-image: url(./images/background/gray-col-2.png)" alt="second pic">
+                </div>
             </td>
             <td id="slide3">
                 <div class="bg" style="background-image: url(./images/background/gray-col-3.png)" alt="third pic"></div>
             </td>
             <td id="slide4">
-                <div class="bg" style="background-image: url(./images/background/gray-col-4.png)" alt="fourth pic"></div>
+                <div class="bg" style="background-image: url(./images/background/gray-col-4.png)" alt="fourth pic">
+                </div>
             </td>
             <td id="slide5">
                 <div class="bg" style="background-image: url(./images/background/gray-col-5.png)" alt="fifth pic"></div>
