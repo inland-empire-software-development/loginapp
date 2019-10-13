@@ -134,12 +134,11 @@ table {
   background-color: rgb(29, 28, 28);
   border: none;
   color: whitesmoke;
-  margin-top: 15px;
   width: 60%;
-  height: 6vh;
-  display: flex;
+  height: 50px;
+  display: block;
+  margin: 15px auto;
   justify-content: center;
-  cursor: pointer;
   transition: 500ms;
 }
 .codeSubmit:hover {
@@ -211,20 +210,23 @@ input[type='submit'] {
 .autocomplete-items {
   position: absolute;
   border: 1px solid #d4d4d4;
-  border-bottom: none;
+  /* border-bottom: none; */
   border-top: none;
   z-index: 99;
   /*position the autocomplete items to be the same width as the container:*/
   top: 100%;
   left: 0;
   right: 0;
+  /* Add scrollbar by setting height */
+  height: 200px;
+  overflow-y: auto;
 }
 .autocomplete-items div {
   padding: 10px;
   cursor: pointer;
   background-color: #fff;
   border-bottom: 1px solid #d4d4d4;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
 .autocomplete-items div:hover {
   /*when hovering an item:*/
