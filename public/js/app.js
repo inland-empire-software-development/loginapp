@@ -30,14 +30,15 @@ let users;
 $.get("/userlist", function (data) {
     users = data
 
-    const errorPopup = document.getElementById("errorPopup");
+    // const errorPopup = document.getElementById("errorPopup");
     const loader = document.getElementById("loader");
-    const codeSubmit = document.getElementById("codeSubmit");
+    // const codeSubmit = document.getElementById("codeSubmit");
 
-    // $(".checkIn").on('submit', (event) => {
-    //     event.preventDefault();
 
-    // })
+    $(".updateButton").on('click', (event) => {
+        console.log("working");
+        loader.style.display = "block";
+    })
 
     function autocomplete(inp, arr) {
         /*the autocomplete function takes two arguments,
@@ -153,7 +154,7 @@ $.get("/userlist", function (data) {
             closeAllLists(e.target);
         });
     }
-    
+
     autocomplete(document.getElementById("myInput"), users);
 
 

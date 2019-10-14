@@ -237,3 +237,19 @@ input[type='submit'] {
   background-color: DodgerBlue !important;
   color: #ffffff;
 }
+.updateButton {
+  background-color: green;
+  border: none;
+  color: whitesmoke;
+  width: 60%;
+  height: 50px;
+  display: block;
+  margin: 15px auto;
+  justify-content: center;
+  transition: 500ms;
+}
+.updateButton:hover {
+  background-color: whitesmoke;
+  color: rgb(29, 28, 28);
+  border: solid 3px rgb(29, 28, 28);
+}

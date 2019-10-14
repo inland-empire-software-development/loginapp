@@ -26,7 +26,7 @@ module.exports = app => {
             // console.log(members.data[0].name);
             for (let i = 0; i < members.data.length; i++) {
                 let meetUpNamePg1 = members.data[i].name;
-                console.log(meetUpNamePg1 + i);
+                // console.log(meetUpNamePg1 + i);
 
                 // console.log(members.data[i].name);
                 User.create({
@@ -37,11 +37,11 @@ module.exports = app => {
             axios({
                 method: 'get',
                 url: 'https://api.meetup.com/iesd-meetup/members?&sign=true&photo-host=public&offset=1'
-            }).then((res) => {
+            }).then((resp) => {
                 // console.log(members.data[0].name);
-                for (let i = 0; i < res.data.length; i++) {
-                    let meetUpNamePg2 = res.data[i].name;
-                    console.log(meetUpNamePg2 + i);
+                for (let i = 0; i < resp.data.length; i++) {
+                    let meetUpNamePg2 = resp.data[i].name;
+                    // console.log(meetUpNamePg2 + i);
 
                     // console.log(members.data[i].name);
                     User.create({
@@ -52,11 +52,11 @@ module.exports = app => {
                 axios({
                     method: 'get',
                     url: 'https://api.meetup.com/iesd-meetup/members?&sign=true&photo-host=public&offset=2'
-                }).then((res) => {
+                }).then((user) => {
                     // console.log(members.data[0].name);
-                    for (let i = 0; i < res.data.length; i++) {
-                        let meetUpNamePg3 = res.data[i].name;
-                        console.log(meetUpNamePg3 + i);
+                    for (let i = 0; i < user.data.length; i++) {
+                        let meetUpNamePg3 = user.data[i].name;
+                        // console.log(meetUpNamePg3 + i);
 
                         // console.log(members.data[i].name);
                         User.create({
@@ -64,7 +64,7 @@ module.exports = app => {
                         })
                     }
 
-                    res.send("Update done")
+                    res.redirect("/")
                 })
             })
         })
