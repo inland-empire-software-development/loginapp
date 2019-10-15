@@ -6,7 +6,8 @@ const Schema = mongoose.Schema;
  */
 const userSchema = new Schema({
     meetUpId: {
-        type: String,
+        type: Number,
+        index: true,
         unique: true
     },
     Name: {

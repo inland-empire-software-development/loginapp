@@ -28,17 +28,15 @@ module.exports = app => {
                 let meetUpNamePg1 = members.data[i].name;
                 let meetUpPic;
                 let meetUpId = members.data[i].id;
-                if (members.data[i].photo === null) {
-                    meetUpPic = "https://secure.meetupstatic.com/photos/event/3/9/b/thumb_482640923.jpeg";
-                }
-                else {
+                if (members.data[i].photo) {
                     meetUpPic = members.data[i].photo.thumb_link;
                 }
-                // console.log(meetUpNamePg1 + i);
+                else {
+                    meetUpPic = "https://secure.meetupstatic.com/photos/event/3/9/b/thumb_482640923.jpeg";
+                }
 
-                // console.log(members.data[i].name);
                 User.create({
-                    meetUpId: meetUpId,
+                    meetUpId,
                     Name: meetUpNamePg1,
                     photourl: meetUpPic
                 });
@@ -51,16 +49,20 @@ module.exports = app => {
                 // console.log(members.data[0].name);
                 for (let i = 0; i < resp.data.length; i++) {
                     let meetUpNamePg2 = resp.data[i].name;
-                    const meetUpPic = resp.data[i].photo.photo.thumb_link;
-                    let meetUpId = resp.data[0].id;
-                    // console.log(meetUpNamePg2 + i);
+                    let meetUpPic;
+                    let meetUpId = resp.data[i].id;
+                    if (resp.data[i].photo) {
+                        meetUpPic = resp.data[i].photo.thumb_link;
+                    }
+                    else {
+                        meetUpPic = "https://secure.meetupstatic.com/photos/event/3/9/b/thumb_482640923.jpeg";
+                    }
 
-                    // console.log(members.data[i].name);
-                    // User.create({
-                    //     id: meetUpId,
-                    //     Name: meetUpNamePg2,
-                    //     photourl: meetUpPic
-                    // })
+                    User.create({
+                        meetUpId,
+                        Name: meetUpNamePg2,
+                        photourl: meetUpPic
+                    })
                 }
 
                 axios({
@@ -70,16 +72,20 @@ module.exports = app => {
                     // console.log(members.data[0].name);
                     for (let i = 0; i < user.data.length; i++) {
                         let meetUpNamePg3 = user.data[i].name;
-                        const meetUpPic = user.data[i].photo.thumb_link;
-                        let meetUpId = user.data[0].id;
-                        // console.log(meetUpNamePg3 + i);
+                        let meetUpPic;
+                        let meetUpId = user.data[i].id;
+                        if (user.data[i].photo) {
+                            meetUpPic = user.data[i].photo.thumb_link;
+                        }
+                        else {
+                            meetUpPic = "https://secure.meetupstatic.com/photos/event/3/9/b/thumb_482640923.jpeg";
+                        }
 
-                        // console.log(members.data[i].name);
-                        // User.create({
-                        //     id: meetUpId,
-                        //     Name: meetUpNamePg3,
-                        //     photourl: meetUpPic
-                        // })
+                        User.create({
+                            meetUpId,
+                            Name: meetUpNamePg3,
+                            photourl: meetUpPic
+                        });
                     }
 
                     res.redirect("/")
@@ -93,7 +99,7 @@ module.exports = app => {
             var userMap = [];
 
             for (let j = 0; j < users.length; j++) {
-                userMap.push(users[j].Name)
+                userMap.push(users[j])
             }
 
             res.send(userMap);
