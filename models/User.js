@@ -5,14 +5,17 @@ const Schema = mongoose.Schema;
  * This is simlar to a Sequelize model
  */
 const userSchema = new Schema({
+    meetUpId: {
+        type: Number,
+        index: true,
+        unique: true
+    },
     Name: {
         type: String,
-        unique: true,
     },
-    // email: {
-    //     type: String,
-    //     unique: true,
-    // }
+    photourl: {
+        type: String,
+    }
 
 });
 

@@ -28,7 +28,8 @@ let users;
 
 // Route to get all the user
 $.get("/userlist", function (data) {
-    users = data
+    users = data;
+    console.log(users);
 
     // const errorPopup = document.getElementById("errorPopup");
     const loader = document.getElementById("loader");
@@ -38,6 +39,8 @@ $.get("/userlist", function (data) {
     $(".updateButton").on('click', (event) => {
         console.log("working");
         loader.style.display = "block";
+        const checkInForm = document.getElementById('check-in-form');
+        checkInForm.style.display = "none";
     })
 
     function autocomplete(inp, arr) {
@@ -66,17 +69,18 @@ $.get("/userlist", function (data) {
             for (i = 0; i < arr.length; i++) {
 
                 /*check if the item starts with the same letters as the text field value:*/
-                if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                if (arr[i].Name.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
 
                     /*create a DIV element for each matching element:*/
                     b = document.createElement("DIV");
 
                     /*make the matching letters bold:*/
-                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                    b.innerHTML += arr[i].substr(val.length);
+                    b.innerHTML = "<img style='width: 25px; height: 25px; margin-right: 10px; object-fit: cover' src='" + arr[i].photourl + "'>";
+                    b.innerHTML += "<strong>" + arr[i].Name.substr(0, val.length) + "</strong>";
+                    b.innerHTML += arr[i].Name.substr(val.length);
 
                     /*insert a input field that will hold the current array item's value:*/
-                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                    b.innerHTML += "<input type='hidden' value='" + arr[i].Name + "'>";
 
                     /*execute a function when someone clicks on the item value (DIV element):*/
                     b.addEventListener("click", function (e) {
