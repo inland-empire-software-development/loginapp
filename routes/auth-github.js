@@ -23,15 +23,25 @@ module.exports = app => {
             method: 'get',
             url: 'https://api.meetup.com/iesd-meetup/members?&sign=true&photo-host=public&offset=0'
         }).then((members) => {
-            // console.log(members.data[0].name);
+            console.log(members.data[0].photo.thumb_link);
             for (let i = 0; i < members.data.length; i++) {
                 let meetUpNamePg1 = members.data[i].name;
+                let meetUpPic;
+                let meetUpId = members.data[i].id;
+                if (members.data[i].photo === null) {
+                    meetUpPic = "https://secure.meetupstatic.com/photos/event/3/9/b/thumb_482640923.jpeg";
+                }
+                else {
+                    meetUpPic = members.data[i].photo.thumb_link;
+                }
                 // console.log(meetUpNamePg1 + i);
 
                 // console.log(members.data[i].name);
                 User.create({
-                    Name: meetUpNamePg1
-                })
+                    meetUpId: meetUpId,
+                    Name: meetUpNamePg1,
+                    photourl: meetUpPic
+                });
             }
 
             axios({
@@ -41,12 +51,16 @@ module.exports = app => {
                 // console.log(members.data[0].name);
                 for (let i = 0; i < resp.data.length; i++) {
                     let meetUpNamePg2 = resp.data[i].name;
+                    const meetUpPic = resp.data[i].photo.photo.thumb_link;
+                    let meetUpId = resp.data[0].id;
                     // console.log(meetUpNamePg2 + i);
 
                     // console.log(members.data[i].name);
-                    User.create({
-                        Name: meetUpNamePg2
-                    })
+                    // User.create({
+                    //     id: meetUpId,
+                    //     Name: meetUpNamePg2,
+                    //     photourl: meetUpPic
+                    // })
                 }
 
                 axios({
@@ -56,12 +70,16 @@ module.exports = app => {
                     // console.log(members.data[0].name);
                     for (let i = 0; i < user.data.length; i++) {
                         let meetUpNamePg3 = user.data[i].name;
+                        const meetUpPic = user.data[i].photo.thumb_link;
+                        let meetUpId = user.data[0].id;
                         // console.log(meetUpNamePg3 + i);
 
                         // console.log(members.data[i].name);
-                        User.create({
-                            Name: meetUpNamePg3
-                        })
+                        // User.create({
+                        //     id: meetUpId,
+                        //     Name: meetUpNamePg3,
+                        //     photourl: meetUpPic
+                        // })
                     }
 
                     res.redirect("/")
