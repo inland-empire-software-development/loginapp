@@ -11,14 +11,6 @@ const getUserList = require('../controllers/getUserList');
 const handleLogin = require('../controllers/login');
 const handlePopulatedUser = require('../controllers/populatedUser');
 
-
-// Event.create({ date: eventDate })
-//     .then(function (dbDate) {
-//         console.log(dbDate);
-//     }).catch(function (err) {
-//         console.log(err.message);
-//     });
-
 module.exports = app => {
     
     // Route to update database with new users from meetup

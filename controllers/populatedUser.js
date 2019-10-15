@@ -1,3 +1,8 @@
+/**
+ * @function handlePopulatedUser
+ * Returns populated events with checked-in users information.
+ */
+
 const handlePopulatedUser = (req, res, Event) => {
   Event.find({})
   // Specify that we want to populate the retrieved users with any associated notes

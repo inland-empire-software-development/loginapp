@@ -1,3 +1,7 @@
+/**
+ * 
+ * Getting images and saving them into a var
+ */
 const logo = document.querySelector('.logo-img');
 const front = document.querySelector(".front");
 const slide1 = document.querySelector("#slide1");
@@ -8,13 +12,14 @@ const slide5 = document.querySelector("#slide5");
 
 const tl = new TimelineMax();
 
-//------------------------
-//   top-down animation
-//------------------------
+
+/**
+ * @tl
+ * animation to make the pictures come from the top-down
+ */
+
 tl.fromTo(front, 1, { height: "0%" }, { height: "65%", ease: Power2.easeInOut })
     .fromTo(front, 1.2, { width: "50%" }, { width: "26%", ease: Power2.easeInOut })
-    // .fromTo(logo, .5, {height: "0%"}, {height: "50%", ease: Power2.easeInOut})
-    // .fromTo(logo, .7, { width: "0%" }, { width: "100%", ease: Power2.easeInOut })
     .fromTo(slide1, 1.2, { y: "-105%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
     .fromTo(slide2, 1.2, { y: "105%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
     .fromTo(slide3, 1.2, { y: "-105%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
@@ -22,22 +27,27 @@ tl.fromTo(front, 1, { height: "0%" }, { height: "65%", ease: Power2.easeInOut })
     .fromTo(slide5, 1.2, { y: "-105%" }, { y: "0%", ease: Power2.easeInOut }, "-=1.2")
 
 
-// Creating a variable to hold all the users
-
+/**
+ * @let users 
+ * Created to hold all users from ajax call
+ */
 let users;
 
-// Route to get all the user
+/**
+ * @get
+ * Getting all the users from the back end and saving it to user aray
+ */
+
 $.get("/userlist", function (data) {
     users = data;
-    console.log(users);
 
-    // const errorPopup = document.getElementById("errorPopup");
     const loader = document.getElementById("loader");
-    // const codeSubmit = document.getElementById("codeSubmit");
-
-
+    /**
+     * @onClick 
+     * Whenever the users wants to update the list a loading icon is displayed
+     */
     $(".updateButton").on('click', (event) => {
-        console.log("working");
+
         loader.style.display = "block";
         const checkInForm = document.getElementById('check-in-form');
         checkInForm.style.display = "none";

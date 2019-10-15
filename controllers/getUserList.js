@@ -1,4 +1,8 @@
-// function to pull users from database and send it to the front end as an array
+
+/**
+ * @function handleGetUserList
+ * Pull users from database and send it to the front-end as an array
+ */
 
 const handleGetUserList = (req, res, User) => {
   User.find({}, function (err, users) {
