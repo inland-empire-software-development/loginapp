@@ -13,27 +13,24 @@
 </head>
 
 <body>
+
+  <!-- Container that holds the logo and picture-->
+
   <div class="container">
     <div class="front">
       <div class="row imageRow">
-        <!-- <a class="button" href="https://github.com/login/oauth/authorize?client_id=dd87eb0d1732bf5e0f5b&scope=user&redirect_uri=http://localhost:8080/oauth/redirect">SIGN IN WITH GITHUB</a> -->
         <div class="logo-img col-12">
           <img src="./images/logo/iesd-logo-black.png" alt="logo" />
         </div>
         <p><strong>Community & Developer Excellence</strong></p>
       </div>
 
+      <!-- Loading circle-->
       <div class="spinner-border text-success" id="loader"></div>
-      <!--                   
-            <div class="row" id="codeSubmit">
-                <div class="row codeRow ">
-                    <p>Enter Code Here</p>
-                </div>
-                <div class="errorPopup" id="errorPopup">
-                    <p>INCORRECT CODE!</p>
-                </div> -->
+     
 
       <!--Make sure the form has the autocomplete function switched off:-->
+
       <div class="row mt-3" id="check-in-form">
         <div class="col">
           <form autocomplete="off" action="/login" method="POST">
@@ -52,6 +49,7 @@
     </div>
   </div>
 
+  <!-- Background Images -->
   <table>
     <tr class="slider">
       <td id="slide1">

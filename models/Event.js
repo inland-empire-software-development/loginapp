@@ -11,7 +11,6 @@ const Schema = mongoose.Schema;
 const eventSchema = new Schema({
   date: {
     type: Date,
-    // default: Date.now,
     unique: true
   },
   users: [

@@ -3,7 +3,7 @@ const axios = require('axios');
 /**
  * @function handleUpdateUsers 
  * to get all users from meet up and save to our database and redirecting them back to home page
- * Meetup only sends to only 200 users at a time, so we need to make another @axios once we pass 600 users 
+ * Meetup only sends to only 200 users at a time, so we need to make another @axios call once we pass 600 users 
  */
 
 const handleUpdateUsers = (req, res, User) => {
