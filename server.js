@@ -21,7 +21,7 @@ app.use(express.static(__dirname + '/public'));
 
 // Routes
 // ========================
-require('./routes/auth-github.js')(app);
+require('./routes/api-routes.js')(app);
 require('./routes/html-routes.js')(app);
 
 // Starting Express app
