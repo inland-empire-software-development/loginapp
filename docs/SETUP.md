@@ -104,6 +104,9 @@ You can use `git pull` instead of `git fetch` if you want to apply the changes d
   $ yarn install
   ```
 
+## Mongo
+  You will need **Mongo** to run this application on your local machine. To install Mongo, go to this [link](https://www.mongodb.com/download-center/community) and download the MongoDB Community Server. Choose the installation for your appropriate OS.
+
 ## **Local Development**
 <a name="local-development"></a>
   **NOTE:** This make take a few minutes to start up. `yarn dev` will host a local server with the website, and will automatically rebuild and hotload changes.
