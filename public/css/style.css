@@ -104,7 +104,7 @@ table {
 }
 
 .codeSubmit {
-  background-color: rgb(29, 28, 28);
+  background-color: #02AE72;
   border: none;
   color: whitesmoke;
   width: 60%;
@@ -191,7 +191,7 @@ input[type='submit'] {
   color: #ffffff;
 }
 .updateButton {
-  background-color: green;
+  background-color: rgb(29, 28, 28);
   border: none;
   color: whitesmoke;
   width: 60%;
